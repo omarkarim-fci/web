@@ -30,6 +30,10 @@
   --surface-hover: oklch(0.92 0 0);
   --surface-border: oklch(0.88 0 0);
   --label-color: oklch(0.45 0 0);
+
+  /* Blur effect variables */
+  --blur-value: 0px;
+  --blur-opacity: 0;
 }
 
 .dark {
@@ -113,4 +117,75 @@
 .dark ::selection {
   background: oklch(0.96 0 0);
   color: oklch(0.08 0 0);
+}
+
+/* Smooth color transitions for theme switching */
+* {
+  transition: color 500ms ease-in-out, background-color 500ms ease-in-out, border-color 500ms ease-in-out;
+}
+
+.blur-surface {
+  backdrop-filter: blur(var(--blur-value));
+  -webkit-backdrop-filter: blur(var(--blur-value));
+}
+
+/* Animation keyframes */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOutScale {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes blurIn {
+  from {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+}
+
+@keyframes blurOut {
+  from {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+  to {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 400ms ease-out forwards;
+}
+
+.animate-fade-out-scale {
+  animation: fadeOutScale 200ms ease-in forwards;
+}
+
+.animate-blur-in {
+  animation: blurIn 600ms ease-out forwards;
+}
+
+.animate-blur-out {
+  animation: blurOut 400ms ease-in forwards;
 }
