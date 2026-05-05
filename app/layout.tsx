@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="bg-background">
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" suppressHydrationWarning className="bg-background" style={{ backgroundColor: '#fafbf9', color: '#141511' }}>
+      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`} style={{ backgroundColor: '#fafbf9', color: '#141511' }}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
